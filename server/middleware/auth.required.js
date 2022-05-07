@@ -3,13 +3,12 @@ const jwt = require('jsonwebtoken');
 module.exports = async(req, res, next) => {
     try {
         const bearerHeader = req.headers.authorization;
-       // console.log(bearerHeader);
         if (typeof bearerHeader === 'undefined') {
             return res.sendStatus(403);
         }
         const token = bearerHeader.split(' ')[1]
-        const payload = await jwt.verify(token, 'reaxion')
-        req.userId = payload._id;
+        const payload = await jwt.verify(token, 'color')
+        req.staffId = payload._id;
         next()
     }catch (err) {
         console.log(err);
