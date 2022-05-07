@@ -5,6 +5,7 @@
   "repository": "https://github.com/mohammadturaab/color-mobile-app-clone",
   "author": "Mohammad Turaab <45646831+mohammadturaab@users.noreply.github.com>",
   "license": "MIT",
+  "private": "true",
   "workspaces": [
     "client",
     "server",
