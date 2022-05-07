@@ -80,17 +80,18 @@ const AuthScreen = () => {
     }
 
     return (
-        <ImageBackground source={require('../public/images/gradient-back.jpeg')} style={styles.image}>
+        <ImageBackground source={require('../images/Wordmark_Color_RGB.png')} style={styles.image}>
             <View style={styles.card}>
                 <Text style={styles.heading}>{isLogin ? 'Login' : 'Signup'}</Text>
                 <View style={styles.form}>
                     <View style={styles.inputs}>
                         <TextInput style={styles.input} placeholder="Email" autoCapitalize="none" onChangeText={setEmail}></TextInput>
-                        {!isLogin && <TextInput style={styles.input} placeholder="Name" onChangeText={setName}></TextInput>}
+                        {!isLogin && <TextInput style={styles.input} placeholder="First name" onChangeText={setFirstName}></TextInput> 
+                        && <TextInput style={styles.input} placeholder="Last name" onChangeText={setLastName}></TextInput>}
                         <TextInput secureTextEntry={true} style={styles.input} placeholder="Password" onChangeText={setPassword}></TextInput>
                         <Text style={[styles.message, {color: isError ? 'red' : 'green'}]}>{message ? getMessage() : null}</Text>
                         <TouchableOpacity style={styles.button} onPress={onSubmitHandler}>
-                            <Text style={styles.buttonText}>Done</Text>
+                            <Text style={styles.buttonText}>Sign Up</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.buttonAlt} onPress={onChangeHandler}>
                             <Text style={styles.buttonAltText}>{isLogin ? 'Sign Up' : 'Log In'}</Text>
