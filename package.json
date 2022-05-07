@@ -1,0 +1,8 @@
+{
+  "name": "capstone",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/mohammadturaab/color-mobile-app-clone",
+  "author": "Mohammad Turaab <45646831+mohammadturaab@users.noreply.github.com>",
+  "license": "MIT"
+}
