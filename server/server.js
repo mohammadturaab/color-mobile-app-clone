@@ -10,7 +10,7 @@ const cors = require("cors")
 const app = express();
 // const routes = require("./routes");
 /* ==== Configuration ==== */
-// const config = require("@react/config");
+const config = require("@color-mobile/config");
 
 /* ==== Middleware ==== */
 
@@ -22,7 +22,7 @@ app.use(express.json())
 app.use(cors())
 
 /* ====  Routes & Controllers  ==== */
-app.use("/api", routes)
+// app.use("/api", routes)
 app.all("/api/*", (req, res, next) => {
  	res.send("HOLD UP THESE ARE NOT THE APIS YOU ARE LOOKING FOR")
  })
