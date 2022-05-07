@@ -17,3 +17,5 @@ const staffSchema = new Schema ({
         ref: "Clinic"
     }]
 })
+
+module.exports = mongoose.model('Staff', staffSchema);

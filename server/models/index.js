@@ -12,5 +12,6 @@ mongoose
 
 module.exports = {
     patient: require('./patient'),
-    staff: require('./staff')
+    staff: require('./staff'),
+    Clinic: require('./Clinic')
 }
