@@ -35,6 +35,6 @@ app.use((req, res, next) => {
 /* ====  Server Listener  ==== */
 app.listen(config.PORT, () => {
 	console.log(
-		`reaxion is live at http://localhost:${config.PORT}.`
+		`color mobile backend is live http://localhost:${config.PORT}.`
 	);
 })
