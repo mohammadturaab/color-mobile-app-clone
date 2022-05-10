@@ -5,5 +5,4 @@ const show = (data, id) => {
     return client.get(`${staff}/${id}`)
 }
 
-
 export {show};
