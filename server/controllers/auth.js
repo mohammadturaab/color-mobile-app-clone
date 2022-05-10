@@ -1,8 +1,8 @@
-const bcrypt = require('bcrypt');
-const jwt = require('jwt');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const db = require('../models');
 
-const signup = async(req, res, next) => {
+const signup = async(req, res) => {
     try {
         const foundStaff = await db.Staff.findOne({
             email: req.body.email
@@ -67,7 +67,7 @@ const login = async (req, res) => {
             foundStaff.password
             )
         if (isMatch) {
-            const token = jwit.sign ({
+            const token = jwt.sign ({
                 _id: foundStaff._id
             },
                 'color', {
@@ -101,27 +101,7 @@ const login = async (req, res) => {
     }
 }
 
-const isAuth = (req, res, next) => {
-    const authHeader = req.get("Authorization");
-    if (!authHeader) {
-        return res.status(401).json({ message: 'not authenticated' });
-    };
-    const token = authHeader.split(' ')[1];
-    let decodedToken; 
-    try {
-        decodedToken = jwt.verify(token, 'secret');
-    } catch (err) {
-        return res.status(500).json({ message: err.message || 'could not decode the token' });
-    };
-    if (!decodedToken) {
-        res.status(401).json({ message: 'unauthorized' });
-    } else {
-        res.status(200).json({ message: 'here is your resource' });
-    };
-};
-
 module.exports = {
     signup,
     login,
-    isAuth
 }
