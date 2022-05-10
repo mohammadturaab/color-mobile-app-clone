@@ -121,7 +121,7 @@ const isAuth = (req, res, next) => {
 };
 
 module.exports = {
-    register,
+    signup,
     login,
     isAuth
 }
