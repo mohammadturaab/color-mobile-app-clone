@@ -1,5 +1,7 @@
 import { useState } from "react";
 import * as authService from "../../api/auth.service";
+import { View, Text, TextInput, Button } from 'react-native';
+
 
 const Login = ( {checkUserActive} ) => {
     const [email, setEmail] = useState("");
@@ -8,7 +10,6 @@ const Login = ( {checkUserActive} ) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
       await authService.login(email, password).then((res) =>{
-          //allows redirect after sign in dont delete
          {checkUserActive();}
             setEmail("");
             setPassword("");
@@ -18,13 +19,14 @@ const Login = ( {checkUserActive} ) => {
     };
 
 return (
-    <div className = "container">
-        <form className = "loginForm">
-        <h1 className="formTitle">Login</h1>
-            <div className = "loginContainer">
-            <label htmlFor="email">
-                Email</label>
-                <input
+        <View>
+            <Text>Say it with me!!!!</Text>
+            <Text>SUCK ME</Text>
+            
+        <Text>Login</Text>
+            <View>
+                
+                <TextInput
                     className = "input"
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
@@ -32,9 +34,7 @@ return (
                     name="email"
                     placeholder="email"
                 />
-            <label  htmlFor="password">
-                Password</label>
-                <input
+                <TextInput
                     className = "input"
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}
@@ -42,14 +42,14 @@ return (
                     name="password"
                     placeholder="password"
                 />
-            </div>
-            <div >
-                <button className = "standardButton" onClick={handleSubmit}>
-                    Login
-                </button>
-            </div>
-        </form>
-    </div>
+            </View>
+            <View>
+                <Button 
+                    onPress={handleSubmit}
+                    title="Log in"
+                />
+            </View>
+        </View>
 );
 };
 
