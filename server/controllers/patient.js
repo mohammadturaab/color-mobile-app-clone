@@ -24,12 +24,12 @@ const getPatient = (req, res) => {
 const createPatient = (req, res) => {
     let patient = req.patientId;
     let incomingReq = {
-        firstName: req.firstName,
-        lastName: req.lastName,
-        dob: req.dob,
-        barcode: req.barcode
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        dob: req.body.dob,
+        barcode: req.body.barcode
     }
-    db.patient.create(req.body, incomingReq(err, savedPatient) =>{
+    db.patient.create(incomingReq, (err, savedPatient) =>{
         if (err) {
             return res
                     .status(400)
