@@ -1,10 +1,11 @@
-const bcrypt = require('bcrypt');
-const jwt = require('jwt');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const db = require('../models');
 
-const register = async(req, res, next) => {
+const signup = async(req, res) => {
+    console.log('hitting signup')
     try {
-        const foundStaff = await db.Staff.findOne({
+        const foundStaff = await db.staff.findOne({
             email: req.body.email
         })
 
@@ -15,6 +16,7 @@ const register = async(req, res, next) => {
                     message: "Email exists."
                 })
         } else {
+            console.log("inside else");
             const salt = await bcrypt.genSalt(9)
             const hash = await bcrypt.hash(req.body.password, salt)
 
@@ -24,9 +26,9 @@ const register = async(req, res, next) => {
                 email: req.body.email,
                 password: hash
             }
-
-            const createdStaff = db.Staff.create(newStaff)
-                .then((err, createdUser) => {
+            console.log("new staff "+ newStaff);
+            const createdStaff = db.staff.create(newStaff)
+                .then((err, createdStaff) => {
 
                 })
                     return res
@@ -49,10 +51,12 @@ const register = async(req, res, next) => {
 }
 
 const login = async (req, res) => {
+    console.log('hitting login')
     try{
-        const foundStaff = await db.Staff.findOne({
-            email: req.user.email
+        const foundStaff = await db.staff.findOne({
+            email: req.body.email
         })
+        console.log('hitting 1')
         .select("+password")
         if (!foundStaff){
             return res
@@ -66,8 +70,9 @@ const login = async (req, res) => {
             req.body.password, 
             foundStaff.password
             )
+            console.log(isMatch + " " + foundStaff)
         if (isMatch) {
-            const token = jwit.sign ({
+            const token = jwt.sign ({
                 _id: foundStaff._id
             },
                 'color', {
@@ -90,6 +95,7 @@ const login = async (req, res) => {
                 })
         }
     } catch (err) {
+        console.log(err);
         return res
             .status(500)
             .json({
@@ -102,6 +108,6 @@ const login = async (req, res) => {
 }
 
 module.exports = {
-    register,
-    login
+    signup,
+    login,
 }

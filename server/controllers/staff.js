@@ -45,7 +45,7 @@ const show = (req, res) => {
         })
 }
 
-module.export = {
+module.exports = {
     index, 
     show
 }

@@ -8,7 +8,7 @@ const cors = require("cors")
 
 /* ==== Instanced Modules  ==== */
 const app = express();
-// const routes = require("./routes");
+const routes = require("./routes");
 /* ==== Configuration ==== */
 const config = require("@color-mobile/config");
 
@@ -22,7 +22,7 @@ app.use(express.json())
 app.use(cors())
 
 /* ====  Routes & Controllers  ==== */
-// app.use("/api", routes)
+app.use("/api", routes)
 app.all("/api/*", (req, res, next) => {
  	res.send("HOLD UP THESE ARE NOT THE APIS YOU ARE LOOKING FOR")
  })
@@ -30,7 +30,6 @@ app.all("/api/*", (req, res, next) => {
 app.use((req, res, next) => {
 //res.sendFile(path.join(__dirname, "build", "index.html"))
 })
-
 
 /* ====  Server Listener  ==== */
 app.listen(config.PORT, () => {

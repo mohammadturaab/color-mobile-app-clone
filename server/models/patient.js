@@ -4,7 +4,6 @@ const Schema = mongoose.Schema;
 const patientSchema = new Schema ({
     firstName: String,
     lastName: String,
-    email: String,
     dob: Number,
     Clinic: [{
         type: mongoose.Schema.Types.ObjectId,
