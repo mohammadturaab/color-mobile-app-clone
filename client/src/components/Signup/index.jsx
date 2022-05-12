@@ -8,7 +8,6 @@ const Signup = () => {
     const [lastName, setlastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [successMsg, setSuccessMsg] = useState("");
 
 
     const handleSubmit = (e) => {
@@ -18,10 +17,8 @@ const Signup = () => {
         setPassword("");
         setfirstName("");
         setlastName("");
-        setSuccessMsg("Thank you for signing up with Color.");
-        console.log("components-->register-->index handlesubmit: ", email, password)
-
     };
+
 
     return (
         <View>
@@ -66,7 +63,6 @@ const Signup = () => {
                             title="Sign Up"
                         />
                     </View>
-                <Text>{successMsg}</Text>
         </View>
     );
 

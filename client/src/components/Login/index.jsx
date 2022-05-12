@@ -1,28 +1,23 @@
 import { useState } from "react";
 import * as authService from "../../api/auth.service";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { View, Text, TextInput, Button } from 'react-native';
 
 
-const Login = ( {checkUserActive} ) => {
+const Login = () => {
     const [email, setEmail] = useState("");
-    const [password, setPassword] =useState("");
+    const [password, setPassword] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
       await authService.login(email, password).then((res) =>{
-         {checkUserActive();}
             setEmail("");
             setPassword("");
         });
-        
-        window.location.href="/";
     };
 
 return (
         <View>
-            <Text>Say it with me!!!!</Text>
-            <Text>SUCK ME</Text>
-            
         <Text>Login</Text>
             <View>
                 

@@ -1,28 +1,32 @@
 import client from "./axios.config";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const auth = "/auth";
 const staff = "/staff";
 
-const register = (email, password, firstName, lastName) => {
+const signup =(staff) => {
     return client
-    .post(`${auth}/register`, {email,password,firstName,lastName})
-    .then((res) => {console.log(res)})
+        .post(`${auth}/signup`, staff )
+        .then((res)=>{
+            return res;
+        })
 }
 
 
-const login = (email, password) => {
+const login = (staff) => {
+    console.log("hitting")
     try {
         return client
-        .post(`${auth}/login`, {email,password})
-        .then((res) => {
-            if(res.data.token) {
-                console.log(res.data.message)
-                localStorage.setItem("Staff", JSON.stringify(res.data.token))
-            }
-            return res.data.token;
-        })
+            .post(`${auth}/login`, staff)
+            .then((res) => {
+                if (res.data.token) {
+                    AsyncStorage.setItem("token", JSON.stringify(res.data.token))
+                    AsyncStorage.setItem("user", JSON.stringify(user.email))
+                }
+            })
+        return res;
     }catch(err){
-        console.log(err)
+        console.log("here " + err)
     }
 }
 
@@ -39,4 +43,4 @@ const logout = () => {
     localStorage.removeItem("Staff")
 }
 
-export {register, login, currentStaff, logout}
+export {signup, login, currentStaff, logout}
