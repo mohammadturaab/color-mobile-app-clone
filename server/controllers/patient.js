@@ -2,7 +2,7 @@ const db = require('../models')
 
 
 const getPatient = (req, res) => {
-    db.patient.find({patient: req.patientId})
+    db.patient.findById({patient: req.patientId})
     .populate("Patient")
     .exec((err, foundPatient)=> {
         if (err){
@@ -22,7 +22,6 @@ const getPatient = (req, res) => {
 }
 
 const createPatient = (req, res) => {
-    let patient = req.patientId;
     let incomingReq = {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
