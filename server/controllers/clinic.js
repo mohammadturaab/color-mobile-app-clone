@@ -43,6 +43,7 @@ const getClinic = (req, res) => {
 
 const createClinic = async (req, res) => {
     let incomingReq = {
+        owner: req.userId,
         clinicName: req.params.clinicName,
         Staff: req.staffId,
     }
