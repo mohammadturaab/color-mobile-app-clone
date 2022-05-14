@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import {NavigationContainer} from '@react-nacigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigation} from '@react-navigation/stack';
 
 import SplashScreen from './src/Screens/SplashScreen';
