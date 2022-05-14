@@ -5,8 +5,10 @@ const staff = "/staff";
 
 const signup = (email, password, firstName, lastName) => {
     return client
-    .post(`${auth}/signup`, {email,password,firstName,lastName})
-    .then((res) => {console.log(res)})
+        .post(`${auth}/signup`, {
+            email,password,firstName,lastName})
+        .then((res) => {
+            console.log(res)})
 }
 
 
@@ -31,6 +33,10 @@ const currentStaff = () => {
     return JSON.parse(staff)
 }
 
+const getProfile = () => {
+    return client.get(`${staff}/profile`)
+}
+
 const logout = () => {
     localStorage.removeItem("user")
 }
@@ -39,4 +45,6 @@ export {
     signup, 
     login, 
     currentStaff, 
-    logout}
+    logout,
+    getProfile
+}

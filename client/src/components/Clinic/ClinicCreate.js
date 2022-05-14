@@ -1,8 +1,9 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom';
+import * as authService from "../../api/auth.service";
 import * as clinicService from '../../api/clinic.service';
 
-export default function ClinicCreate (props) {
+export default function ClinicCreate () {
     const [clinicName, setClinicName] = useState("");
 
     const handleSubmit = async () => {

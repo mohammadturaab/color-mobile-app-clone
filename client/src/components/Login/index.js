@@ -7,13 +7,12 @@ const Login = ( {checkUserActive} ) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-      await authService.login(email, password).then((res) =>{
-          //allows redirect after sign in dont delete
-         checkUserActive();
+      await authService.login(email, password).then((res) =>{{
+        checkUserActive();
+      }
             setEmail("");
             setPassword("");
         });
-        window.location.href="/staff";
     };
 
 return (
@@ -43,7 +42,7 @@ return (
                 />
             </div>
             <div >
-                <button className = "standardButton" onClick={handleSubmit}>
+                <button onClick={handleSubmit}>
                     Login
                 </button>
             </div>

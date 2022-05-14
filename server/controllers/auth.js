@@ -48,6 +48,7 @@ const signup = async(req, res) => {
 }
 
 const login = async (req, res) => {
+    console.log('user is logged in');
     try{
         const foundStaff = await db.staff.findOne({
             email: req.body.email
