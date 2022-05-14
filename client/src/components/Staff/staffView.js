@@ -1,0 +1,48 @@
+import React, {useState, useEffect} from 'react';
+import * as staffService from '../../api/staff.service';
+import ClinicCreate from '../Clinic/ClinicCreate';
+import ClinicView from '../Clinic/ClinicView';
+
+const StaffIndex = () => {
+    const [clinic, setClinic] = useState([]);
+    const [staff, setStaff] = useState([]);
+
+    const findStaff = async () => {
+        await staff.show().then((res) =>{
+            setStaff(res.data.data)
+        })
+    }
+    useEffect(() => {
+        findStaff();
+    }, []);
+
+    const findClinic = async () => {
+        await clinic.show().then((res) => {
+            setClinic(res.data.data)
+        });
+    }
+    useEffect(() => {
+        findClinic();
+    }, []);
+
+    return (
+        <div>
+            <h3>Welcome {staff.firstName}</h3>
+            <p>Clinics</p>
+            {clinic.map((clinic, index) => {
+                if(staff._id === clinic.staff){
+                    return (
+                        <div>
+                            <li key={index}>
+                                <p>{clinic.name}</p>
+                            </li>
+                        </div>
+                    )
+                }
+            })
+        }
+        </div>
+    )
+}
+
+export default StaffIndex

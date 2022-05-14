@@ -14,6 +14,18 @@ export default function Nav ({checkUserActive}){
                 <h1>Color</h1>
             </div>
             <NavLink 
+                to='/staff'>
+                    Profile
+                </NavLink> 
+            <NavLink 
+                to='/clinicadd'>
+                    Add Clinic
+                </NavLink>
+            <NavLink 
+                to='/clinicview'>
+                    View Clinic
+                </NavLink>
+                <NavLink 
                 to='/'
                 onClick={handleLogout}>
                     Logout

@@ -1,9 +1,11 @@
 import { Route, Routes } from "react-router-dom";
 import { useReducer, useEffect } from "react";
 import * as authService from "../api/auth.service";
-import Welcome from "../Welcome";
+import Welcome from "../components/Welcome";
 import Nav from '../components/Nav';
-// import Clinic from '../components/Clinic';
+import ClinicCreate from '../components/Clinic/ClinicCreate';
+import ClinicView from "../components/Clinic/ClinicView";
+import Staff from "../components/Staff/staffView";
 
 const reducer = (prevState, action) => {
     switch(action.type){
@@ -41,10 +43,18 @@ const Access = () => {
                 checkUserActive={() => staffActive}/>
             </div>
                 <Routes>
-                    {/* <Route
-                        path='/'
-                        element={<Clinic/>}
-                        /> */}
+                    <Route
+                        path='/clinicadd'
+                        element={<ClinicCreate/>}
+                        />
+                    <Route
+                        path='/clinicview'
+                        element={<ClinicView/>}
+                        />
+                     <Route
+                        path='/staff'
+                        element={<Staff/>}
+                        />
                 </Routes>
             
             </>

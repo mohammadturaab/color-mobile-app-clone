@@ -1,7 +1,7 @@
 const db = require('../models');
 
 const index = (req, res) => {
-    db.clinic.find({Admin: true}),
+    db.Clinic.find({Admin: true}),
     (err, foundClinic) => {
         if (err){
             return res
@@ -43,8 +43,7 @@ const getClinic = (req, res) => {
 
 const createClinic = async (req, res) => {
     let incomingReq = {
-        owner: req.userId,
-        clinicName: req.params.clinicName,
+        name: req.params.name,
         Staff: req.staffId,
     }
     await db.Clinic.create(incomingReq, (err, createdClinic) => {
