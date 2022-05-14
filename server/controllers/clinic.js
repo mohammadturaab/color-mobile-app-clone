@@ -78,9 +78,29 @@ const createClinic = async (req, res) => {
     })
 }
 
+const getAll = (req, res) => {
+    db.Clinic.findById(req.params.id, (err, foundClinic) => {
+        if(err){
+            return res
+                .status(400)
+                .json({
+                    error: err
+                })
+        } else{
+            return res
+                .status(200)
+                .json({ 
+                    message: "Found Clinic",
+                    data: foundClinic,
+                })
+        }
+    })
+}
+
 
 module.exports = {
     index,
     getClinic,
-    createClinic
+    createClinic,
+    getAll
 }
