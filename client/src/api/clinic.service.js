@@ -1,5 +1,6 @@
 import client from "./axios.config.js";
-const clinic = '/'
+
+const clinic = '/clinic'
 
 const getClinic = (data, id) => {
     return client.get(`${clinic}/${id}`, data)

@@ -1,7 +1,7 @@
 import client from "./axios.config";
 
 const auth = "/auth";
-const staff = "/";
+const staff = "/staff";
 
 const signup = (email, password, firstName, lastName) => {
     return client
@@ -27,12 +27,16 @@ const login = (email, password) => {
 }
 
 const currentStaff = () => {
-    let staff = localStorage.getItem("staff");
+    let staff = localStorage.getItem("user");
     return JSON.parse(staff)
 }
 
 const logout = () => {
-    localStorage.removeItem("staff")
+    localStorage.removeItem("user")
 }
 
-export {signup, login, currentStaff, logout}
+export {
+    signup, 
+    login, 
+    currentStaff, 
+    logout}

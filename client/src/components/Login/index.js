@@ -13,6 +13,7 @@ const Login = ( {checkUserActive} ) => {
             setEmail("");
             setPassword("");
         });
+        window.location.href="/staff";
     };
 
 return (
