@@ -1,24 +1,59 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native';
-import Login from '../client/src/components/Login'
-import Signup from "../client/src/components/Signup";
+import 'react-native-gesture-handler';
+import React from 'react';
+import {NavigationContainer} from '@react-nacigation/native';
+import {createStackNavigation} from '@react-navigation/stack';
 
-export default function App() {
+import SplashScreen from './src/Screens/SplashScreen';
+import LoginScreen from './src/Screens/LoginScreen';
+import RegisterScreen from './src/Screens/RegisterScreen';
+import DrawerNavigationRoutes from './src/Screens/DrawerNavigationRoutes';
+
+const Stack = createStackNavigation();
+
+const Auth = () => {
   return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-      <Login />
-      <Signup />
-    </View>
-  );
-}
+    <Stack.Navigator initialRouteName = "LoginScreen">
+      <Stack.Screen
+        name="LoginScreen"
+        component={LoginScreen}
+        options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="RegisterScreen"
+          component={RegisterScreen}
+          option={{
+            title: 'Register',
+            headerStyle: {
+              backgroundColor: '#307ecc',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}
+          />
+    </Stack.Navigator>
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  );
+};
+
+const App = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="SplashScreen">
+        <Stack.Screen
+          name="SplashScreen"
+          component={SplashScreen}
+          option={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="DrawerNavigationRoutes"
+          component={DrawerNavigation}
+          option={{headerShown: false}}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
+export default App;
