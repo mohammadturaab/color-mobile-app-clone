@@ -1,6 +1,5 @@
 import { useState } from "react";
 import * as authService from "../../api/auth.service";
-import '../../../src/styles.css'
 
 const Login = ( {checkUserActive} ) => {
     const [email, setEmail] = useState("");
