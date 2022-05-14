@@ -1,9 +1,9 @@
 import client from "./axios.config";
 
 const auth = "/auth";
-const users = "/users";
+const staff = "/";
 
-const register = (email, password, firstName, lastName) => {
+const signup = (email, password, firstName, lastName) => {
     return client
     .post(`${auth}/signup`, {email,password,firstName,lastName})
     .then((res) => {console.log(res)})
@@ -35,4 +35,4 @@ const logout = () => {
     localStorage.removeItem("staff")
 }
 
-export {register, login, currentStaff, logout}
+export {signup, login, currentStaff, logout}
