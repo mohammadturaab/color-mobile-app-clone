@@ -14,7 +14,7 @@ export default function ClinicCreate () {
         if (!res === 200) {
             alert ('Please enter Clinic Name');
         }
-        window.location.href="/"
+        window.location.href="/clinicview"
 };
     return (
         <div>

@@ -42,6 +42,7 @@ const getClinic = (req, res) => {
 }
 
 const createClinic = async (req, res) => {
+    console.log("creating clinic");
     let incomingReq = {
         name: req.body.name,
         Staff: req.staffId,
@@ -67,6 +68,7 @@ const createClinic = async (req, res) => {
                 }
                 createdClinic.staff.push(foundStaff);
                 createdClinic.save();
+                console.log("saved " + foundStaff)
                 return res
                     .status(400)
                     .json({

@@ -1,14 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import * as staffService from '../../api/staff.service';
-import ClinicCreate from '../Clinic/ClinicCreate';
-import ClinicView from '../Clinic/ClinicView';
+import * as clinicService from '../../api/clinic.service';
 
 const StaffIndex = () => {
     const [clinic, setClinic] = useState([]);
     const [staff, setStaff] = useState([]);
 
     const findStaff = async () => {
-        await staff.show().then((res) =>{
+        await staffService.show().then((res) => {
             setStaff(res.data.data)
         })
     }
@@ -16,14 +15,15 @@ const StaffIndex = () => {
         findStaff();
     }, []);
 
-    const findClinic = async () => {
-        await clinic.show().then((res) => {
-            setClinic(res.data.data)
-        });
-    }
-    useEffect(() => {
-        findClinic();
-    }, []);
+
+    // const findClinic = async () => {
+    //     await clinicService.getAll().then((res) => {
+    //         setClinic(res.data.data)
+    //     });
+    // }
+    // useEffect(() => {
+    //     findClinic();
+    // }, []);
 
     return (
         <div>
@@ -34,7 +34,7 @@ const StaffIndex = () => {
                     return (
                         <div>
                             <li key={index}>
-                                <p>{clinic.name}</p>
+                                <p>Name: {clinic.name}</p>
                             </li>
                         </div>
                     )

@@ -1,7 +1,6 @@
 const db = require('../models');
 
 const index = (req, res) => {
-    console.log('hitting index');
     let incomingReq = {
         Staff: req.staffId,
     }
@@ -24,10 +23,8 @@ const index = (req, res) => {
 }
 
 const show = (req, res) => {
-    console.log('hitting show');
     db.staff.findById(req.staffId,
         (err, foundStaff) => {
-            console.log("FOUND STAFF" + foundStaff)
             if (err){
                 return res
                     .status(400)
@@ -35,8 +32,7 @@ const show = (req, res) => {
                         message: "Failed to find the staff profile",
                         error: err,
                     })
-            }   else{
-                console.log(foundStaff)
+            }   else {
                 return res
                     .status(200)
                     .json({

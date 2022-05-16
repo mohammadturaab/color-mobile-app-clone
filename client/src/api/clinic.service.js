@@ -11,6 +11,7 @@ const getAll = (data) => {
 }
 
 const create = (data) => {
+    console.log(data);
     return client.post(`${clinic}`, data)
 }
 
