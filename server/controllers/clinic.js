@@ -43,7 +43,7 @@ const getClinic = (req, res) => {
 
 const createClinic = async (req, res) => {
     let incomingReq = {
-        name: req.params.name,
+        name: req.body.name,
         Staff: req.staffId,
     }
     await db.Clinic.create(incomingReq, (err, createdClinic) => {
