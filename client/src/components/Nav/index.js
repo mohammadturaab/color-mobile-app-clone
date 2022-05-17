@@ -25,6 +25,18 @@ export default function Nav ({checkUserActive}){
                 to='/clinicview'>
                     View Clinic
                 </NavLink>
+            <NavLink 
+                to='/addpatient'>
+                    Add Patient
+                </NavLink>
+            <NavLink 
+                to='/viewpatient'>
+                    View Patient
+                </NavLink>
+            <NavLink 
+                to='/updatepatient'>
+                    Update Patient
+                </NavLink>
                 <NavLink 
                 to='/'
                 onClick={handleLogout}>

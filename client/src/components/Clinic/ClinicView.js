@@ -21,13 +21,12 @@ export default function ClinicView () {
     useEffect(() => {
         getClinic();
         findStaff();
-    })
+    }, []);
 
     return (
         <>
             <h3>Clinics</h3>
             {clinics?.map((clinic, index) => {
-                if(staff._id === clinic.staff){
                     return (
                         <div>
                             <li key={index}>
@@ -35,7 +34,6 @@ export default function ClinicView () {
                             </li>
                         </div>
                     )
-                }
             })
         }
         </>

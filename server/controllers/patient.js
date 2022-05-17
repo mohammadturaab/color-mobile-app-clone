@@ -26,10 +26,11 @@ const createPatient = (req, res) => {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         dob: req.body.dob,
-        barcode: req.body.barcode
     }
     db.patient.create(incomingReq, (err, savedPatient) =>{
+        console.log(savedPatient);
         if (err) {
+            console.log(err);
             return res
                     .status(400)
                     .json({

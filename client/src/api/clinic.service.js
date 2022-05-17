@@ -11,7 +11,7 @@ const getAll = (data) => {
 }
 
 const create = (data) => {
-    console.log(data);
+    console.log("in create clinc services" + data);
     return client.post(`${clinic}`, data)
 }
 

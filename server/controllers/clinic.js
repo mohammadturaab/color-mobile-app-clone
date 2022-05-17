@@ -21,7 +21,7 @@ const index = (req, res) => {
 }
 
 const getClinic = (req, res) => {
-    db.Clinic.find({Patient: req.patientId})
+    db.Clinic.find()
     .populate("Clinic")
     .exec((err, foundClinic) => {
         if (err){

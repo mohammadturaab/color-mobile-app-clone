@@ -6,6 +6,9 @@ import Nav from '../components/Nav';
 import ClinicCreate from '../components/Clinic/ClinicCreate';
 import ClinicView from "../components/Clinic/ClinicView";
 import Staff from "../components/Staff/staffView";
+import CreatePatient from "../components/Patient/CreatePatient";
+import ViewPatient from "../components/Patient/ViewPatient";
+import UpdatePatient from "../components/Patient/UpdatePatient";
 
 const reducer = (prevState, action) => {
     switch(action.type){
@@ -54,6 +57,18 @@ const Access = () => {
                      <Route
                         path='/staff'
                         element={<Staff/>}
+                        />
+                    <Route
+                        path='/addpatient'
+                        element={<CreatePatient/>}
+                        />
+                    <Route
+                        path='/editpatient'
+                        element={<UpdatePatient/>}
+                        />
+                    <Route
+                        path='/viewpatient'
+                        element={<ViewPatient/>}
                         />
                 </Routes>
             
