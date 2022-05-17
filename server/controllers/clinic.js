@@ -21,10 +21,8 @@ const index = (req, res) => {
 }
 
 const getClinic = (req, res) => {
-    console.log("in backend getClinic")
     db.clinic.find(req.params.id)
     .exec((err, foundClinic) => {
-        console.log(foundClinic)
         if (err){
             return res
                 .status(400)
@@ -59,7 +57,6 @@ const createClinic = async (req, res) => {
         };
         db.staff.findById(createdClinic.Staff)
             .exec(function (err, foundStaff){
-                console.log(err)
                 if (err){
                     return res
                         .status(400)
@@ -70,7 +67,6 @@ const createClinic = async (req, res) => {
                 }
                 createdClinic.staff.push(foundStaff);
                 createdClinic.save();
-                console.log("saved " + foundStaff)
                 return res
                     .status(400)
                     .json({
@@ -86,14 +82,12 @@ const showOne = (req, res) => {
     db.clinic.findById(req.params.id, (err, 
         foundClinic) => {
         if(err) {
-            console.log(err)
             return res
                 .status(400)
                 .json({
                     error: err
                 })
         } else{
-            console.log("found " + foundClinic)
             return res
                 .status(200)
                 .json({ 

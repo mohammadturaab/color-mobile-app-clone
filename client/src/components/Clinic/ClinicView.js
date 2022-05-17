@@ -1,7 +1,6 @@
 import {useState, useEffect} from 'react';
-import {Route, useHistory, generatePath, useParams, history} from "react-router-dom";
+import {Link} from "react-router-dom";
 import * as clinicService from '../../api/clinic.service';
-import SingleClinic from "./SingleClinic";
 
 export default function ClinicView () {
     const [clinics, setClinics] = useState();
@@ -16,11 +15,6 @@ export default function ClinicView () {
         getClinic();
     }, []);
 
-    const { id } = useParams();
-
-    const SingleClinic = (e) => {
-        history.push(generatePath("/clinicview/:id", { id }));
-      };
 
     return (
         <>
@@ -30,9 +24,7 @@ export default function ClinicView () {
                         <div>
                             <li>
                                 <p>Name: {clinic.clinicName}</p>
-                                    <Route path="/clinicview/:id">
-                                        <SingleClinic />
-                                    </Route>
+                                
                             </li>
                         </div>
                     )

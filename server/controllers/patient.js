@@ -28,7 +28,6 @@ const createPatient = (req, res) => {
         dob: req.body.dob,
     }
     db.patient.create(incomingReq, (err, savedPatient) =>{
-        console.log(savedPatient);
         if (err) {
             console.log(err);
             return res

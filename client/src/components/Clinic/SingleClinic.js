@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import * as clinicService from '../../api/clinic.service';
 
-export default function ClinicView () {
+export default function ViewClinicDetails () {
     const [clinic, setClinic] = useState();
 
     const getClinic = async () => {

@@ -7,7 +7,6 @@ const getPatient = (data) => {
 }
 
 const createPatient = (data, id) => {
-    console.log('hitting create patient ' + data)
     return client.post (`${patient}/${id}`, data)
 }
 

@@ -71,6 +71,9 @@ const Access = () => {
                         path='/viewpatient'
                         element={<ViewPatient/>}
                         />
+                    <Route path="/clinicview/:id"
+                        component={SingleClinic}
+                        />
                 </Routes>
             
             </>
