@@ -27,7 +27,7 @@ export default function CreatePatient () {
             window.location.href="/"
     }
     const findClinic = async () => {
-        await clinicService.getAll().then ((res)=>{
+        await clinicService.getClinic().then ((res)=>{
             setClinic(res.data.data);
             console.log("found clinic:", clinic)
             setClinic(res.data.data[0]._id)

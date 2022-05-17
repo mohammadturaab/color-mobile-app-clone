@@ -10,6 +10,7 @@ export default function ClinicCreate () {
         let newClinic = { clinicName };
         let res = await clinicService.create(newClinic).then(() => {
             setClinicName('')
+            console.log("clinc" + newClinic);
         })
         if (!res === 200) {
             alert ('Please enter Clinic Name');

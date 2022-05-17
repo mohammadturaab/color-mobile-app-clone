@@ -9,6 +9,7 @@ import Staff from "../components/Staff/staffView";
 import CreatePatient from "../components/Patient/CreatePatient";
 import ViewPatient from "../components/Patient/ViewPatient";
 import UpdatePatient from "../components/Patient/UpdatePatient";
+import SingleClinic from "../components/Clinic/SingleClinic" 
 
 const reducer = (prevState, action) => {
     switch(action.type){

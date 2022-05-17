@@ -1,7 +1,7 @@
 const db = require('../models');
 
 const index = (req, res) => {
-    db.Clinic.find({Admin: true}),
+    db.clinic.find(req.params.id),
     (err, foundClinic) => {
         if (err){
             return res
@@ -21,9 +21,10 @@ const index = (req, res) => {
 }
 
 const getClinic = (req, res) => {
-    db.Clinic.find()
-    .populate("Clinic")
+    console.log("in backend getClinic")
+    db.clinic.find(req.params.id)
     .exec((err, foundClinic) => {
+        console.log(foundClinic)
         if (err){
             return res
                 .status(400)
@@ -44,10 +45,10 @@ const getClinic = (req, res) => {
 const createClinic = async (req, res) => {
     console.log("creating clinic");
     let incomingReq = {
-        name: req.body.name,
-        Staff: req.staffId,
+        clinicName: req.body.clinicName,
     }
-    await db.Clinic.create(incomingReq, (err, createdClinic) => {
+    await db.clinic.create(incomingReq, (err, createdClinic) => {
+        console.log("created " + createdClinic + " " + err);
         if (err){
             return res
                 .status(400)
@@ -58,6 +59,7 @@ const createClinic = async (req, res) => {
         };
         db.staff.findById(createdClinic.Staff)
             .exec(function (err, foundStaff){
+                console.log(err)
                 if (err){
                     return res
                         .status(400)
@@ -80,15 +82,18 @@ const createClinic = async (req, res) => {
     })
 }
 
-const getAll = (req, res) => {
-    db.Clinic.findById(req.params.id, (err, foundClinic) => {
-        if(err){
+const showOne = (req, res) => {
+    db.clinic.findById(req.params.id, (err, 
+        foundClinic) => {
+        if(err) {
+            console.log(err)
             return res
                 .status(400)
                 .json({
                     error: err
                 })
         } else{
+            console.log("found " + foundClinic)
             return res
                 .status(200)
                 .json({ 
@@ -104,5 +109,5 @@ module.exports = {
     index,
     getClinic,
     createClinic,
-    getAll
+    showOne
 }

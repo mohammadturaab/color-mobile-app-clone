@@ -2,9 +2,9 @@ const mongoose = require('mongoose')
 // const Schema = mongoose.Schema;
 
 const clinicSchema = new mongoose.Schema ({
-    name: {
+    clinicName: {
         type: String,
-        required: true
+        require: true,
     },
     staff: [{ 
         type: mongoose.Schema.Types.ObjectId,

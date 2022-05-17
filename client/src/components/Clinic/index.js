@@ -1,5 +1,6 @@
 import ClinicCreate from "./ClinicCreate";
 import ClinicView from "./ClinicView";
+import SingleClinic from "./SingleClinic";
 
 export default function Clinic () {
     return (
@@ -7,6 +8,7 @@ export default function Clinic () {
             <div>
                 <ClinicView/>
                 <ClinicCreate/>
+                <SingleClinic/>
             </div>
         </>
     )

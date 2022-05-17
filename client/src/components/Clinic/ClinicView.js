@@ -1,36 +1,38 @@
 import {useState, useEffect} from 'react';
+import {Route, useHistory, generatePath, useParams, history} from "react-router-dom";
 import * as clinicService from '../../api/clinic.service';
-import * as staffProfile from "../../api/staff.service";
+import SingleClinic from "./SingleClinic";
 
 export default function ClinicView () {
     const [clinics, setClinics] = useState();
-    const [staff, setStaff] = useState("");
 
     const getClinic = async () => {
         await clinicService.getClinic()
-            .then ((res) => {
+            .then((res) => {
                 setClinics(res.data.data);
             })
     }
-
-    const findStaff = async () => {
-        await staffProfile.show().then((res) => {
-            setStaff(res.data.data);
-        })
-    }
     useEffect(() => {
         getClinic();
-        findStaff();
     }, []);
+
+    const { id } = useParams();
+
+    const SingleClinic = (e) => {
+        history.push(generatePath("/clinicview/:id", { id }));
+      };
 
     return (
         <>
             <h3>Clinics</h3>
-            {clinics?.map((clinic, index) => {
+            {clinics?.map((clinic) => {
                     return (
                         <div>
-                            <li key={index}>
-                                <p>Name: {clinic.name}</p>
+                            <li>
+                                <p>Name: {clinic.clinicName}</p>
+                                    <Route path="/clinicview/:id">
+                                        <SingleClinic />
+                                    </Route>
                             </li>
                         </div>
                     )
