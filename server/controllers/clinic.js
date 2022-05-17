@@ -1,8 +1,8 @@
 const db = require('../models');
 
 const index = (req, res) => {
-    db.clinic.find(req.params.id),
-    (err, foundClinic) => {
+    db.clinic.find().exec( 
+        (err, foundClinic) => {
         if (err){
             return res
                 .status(400)
@@ -17,7 +17,27 @@ const index = (req, res) => {
                 message: 'Found Clinic',
                 data: foundClinic
             })
-    }
+    })
+}
+
+const show = (req, res) => {
+    console.log("In show " + req.params.id);
+    db.clinic.findById(req.params.id, (err, foundClinic) => {
+        if (err){
+            return res
+                .status(400)
+                .json({
+                    message: 'Error 400',
+                    err: err,
+                })
+        }
+        return res
+            .status(200)
+            .json({
+                message: "Found Clinic",
+                data: foundClinic
+            })
+    })
 }
 
 const getClinic = (req, res) => {
@@ -41,7 +61,6 @@ const getClinic = (req, res) => {
 }
 
 const createClinic = async (req, res) => {
-    console.log("creating clinic");
     let incomingReq = {
         clinicName: req.body.clinicName,
     }
@@ -78,30 +97,32 @@ const createClinic = async (req, res) => {
     })
 }
 
-const showOne = (req, res) => {
-    db.clinic.findById(req.params.id, (err, 
-        foundClinic) => {
-        if(err) {
-            return res
-                .status(400)
-                .json({
-                    error: err
-                })
-        } else{
-            return res
-                .status(200)
-                .json({ 
-                    message: "Found Clinic",
-                    data: foundClinic,
-                })
-        }
-    })
-}
+// const show = (req, res) => {
+//     console.log("hitting backend 3");
+//     console.log(req.clinic.id);
+//     db.clinic.findById(req.params.data, (err, foundClinic) => {
+//             console.log(err)
+//         if(err) {
+//             return res
+//                 .status(400)
+//                 .json({
+//                     error: err
+//                 })
+//         } else{
+//             return res
+//                 .status(200)
+//                 .json({ 
+//                     message: "Found Clinic",
+//                     data: foundClinic,
+//                 })
+//         }
+//     })
+// }
 
 
 module.exports = {
     index,
     getClinic,
     createClinic,
-    showOne
-}
+    show
+ }

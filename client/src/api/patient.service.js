@@ -6,8 +6,8 @@ const getPatient = (data) => {
     return client.get (`${patient}`, data)
 }
 
-const createPatient = (data, id) => {
-    return client.post (`${patient}/${id}`, data)
+const createPatient = (data) => {
+    return client.post (`${patient}`, data)
 }
 
 const updatePatient = (data, id) => {

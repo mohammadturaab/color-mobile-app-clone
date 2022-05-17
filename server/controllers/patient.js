@@ -23,11 +23,12 @@ const getPatient = (req, res) => {
 
 const createPatient = (req, res) => {
     let incomingReq = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        dob: req.body.dob,
+        patientFirstName: req.body.patientFirstName,
+        patientLastName: req.body.patientLastName,
+        patientDOB: req.body.patientDOB,
     }
-    db.patient.create(incomingReq, (err, savedPatient) =>{
+    console.log(incomingReq);
+    db.patient.create(incomingReq, (err, createdPatient) =>{
         if (err) {
             console.log(err);
             return res
@@ -36,13 +37,19 @@ const createPatient = (req, res) => {
                         message: "Failed to create patient",
                         error: err,
                     })
-        } return res
-                .status(201)
-                .json({
-                    message: "patient created",
-                    data: savedPatient
-                })
-
+        }else{
+        db.clinic.findById(req.body.clinic, (err, foundClinic) => {
+                console.log(req.body.clinic);
+                if (err){
+                    return res.status(400).json({
+                        message: "Failed find Clinic",
+                        error: err,
+                    })
+                } else {
+                    foundClinic.patient.push(createdPatient)
+                }
+            })
+        }
     })
 }
 

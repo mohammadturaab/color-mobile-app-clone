@@ -6,8 +6,13 @@ const getClinic = (data) => {
     return client.get(`${clinic}`, data);
 }
 
-const showOne = (id) => {
-    return client.get(`${clinic}/${id}`)
+const index = (id, data) => {
+    return client.get(`${clinic}/${id}`, data)
+}
+
+const get = (id, data) => {
+    console.log(id);
+    return client.get(`${clinic}/${id}`, data)
 }
 
 const create = (data) => {
@@ -16,6 +21,7 @@ const create = (data) => {
 
 export {
     getClinic,
-    showOne,
-    create
+    index,
+    create,
+    get
 }

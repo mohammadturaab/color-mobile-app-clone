@@ -2,9 +2,18 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
 const patientSchema = new Schema ({
-    firstName: String,
-    lastName: String,
-    dob: Number,
+    patientFirstName: {
+        type: String,
+        required: true
+    },
+    patientLastName: {
+        type: String,
+        required: true
+    },
+    patientDOB: {
+        type: Number,
+        required: true
+    },
     Clinic: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Clinic"

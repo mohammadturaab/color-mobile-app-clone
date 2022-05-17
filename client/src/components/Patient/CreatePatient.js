@@ -8,18 +8,20 @@ export default function CreatePatient () {
     const [patientFirstName, setPatientFirstName] = useState("");
     const [patientLastName, setPatientLastName] = useState("");
     const [patientDOB, setPatientDOB] = useState("");
-    const [clinic, setClinic] = useState([]);
+    const [clinics, setClinics] = useState([]);
+    const [clinic, setClinic] = useState("");
     const [patientBarcode, setPatientBarcode] = useState("");
 
     const handleSubmit = async () => {
         let newPatient = {
-            patientFirstName, patientLastName, patientDOB, patientBarcode};
+            patientFirstName, patientLastName, patientDOB, patientBarcode, clinic};
         let res = await patientService.createPatient(newPatient)
             .then(() => {
                 setPatientFirstName("");
                 setPatientLastName("");
                 setPatientDOB("");
                 setPatientBarcode("");
+                setClinic("")
             });
             if (!res === 201){
                 alert("Adding patient failed. More information: ", res.status)
@@ -27,10 +29,9 @@ export default function CreatePatient () {
             window.location.href="/"
     }
     const findClinic = async () => {
-        await clinicService.getClinic().then ((res)=>{
-            setClinic(res.data.data);
-            console.log("found clinic:", clinic)
-            setClinic(res.data.data[0]._id)
+        await clinicService.getClinic()
+        .then ((res)=>{
+            setClinics(res.data.data);
         })
     }
     useEffect(() => {
@@ -42,11 +43,12 @@ export default function CreatePatient () {
         <div>
             <h1>Select Site</h1>
             <select onChange={(e) => setClinic(e.target.value)}>
-                {clinic.map((clinic) => {
+                {clinics.map((clinic) => {
                     return(
                         <option
                         value={clinic._id}
-                        name="clinic">{clinic.name}</option>
+                        key={clinic._id}
+                        name="clinic">{clinic.clinicName}</option>
                     )
                 })}
             </select>

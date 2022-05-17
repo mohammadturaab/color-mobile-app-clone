@@ -72,7 +72,7 @@ const Access = () => {
                         element={<ViewPatient/>}
                         />
                     <Route path="/clinicview/:id"
-                        component={SingleClinic}
+                        element={<SingleClinic/>}
                         />
                 </Routes>
             
