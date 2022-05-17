@@ -7,7 +7,7 @@ const Welcome = ({ checkUserActive }) => {
 	return (
 		<div>
 			<div>
-				<h1>Color</h1>
+				<h1>Patient Tracker</h1>
 			</div>
 			<div>
 				<Login checkUserActive={checkUserActive}/>

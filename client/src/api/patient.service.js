@@ -15,6 +15,7 @@ const createPatient = (data) => {
 }
 
 const updatePatient = (data, id) => {
+    console.log(id);
     return client.put(`${patient}/${id}`, data)
 }
 

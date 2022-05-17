@@ -89,7 +89,7 @@ const updatePatient = (req, res) => {
                 return res.status(202).json({
                     message: "Patient Info Updated",
                     data: foundPatient,
-                    id: req.body
+                    id: req.params.id,
                 })
             })
 }

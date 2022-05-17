@@ -13,7 +13,7 @@ export default function Navigation ({checkUserActive}){
         <div>
             <Navbar bg="light" expand="lg">
                 <Container>
-                <Navbar.Brand>Clinic Tracker</Navbar.Brand>
+                <Navbar.Brand>Patient Tracker</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
