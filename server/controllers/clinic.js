@@ -21,7 +21,6 @@ const index = (req, res) => {
 }
 
 const show = (req, res) => {
-    console.log("In show " + req.params.id);
     db.clinic.findById(req.params.id, (err, foundClinic) => {
         if (err){
             return res
@@ -43,6 +42,7 @@ const show = (req, res) => {
 const getClinic = (req, res) => {
     db.clinic.find(req.params.id)
     .exec((err, foundClinic) => {
+        console.log(foundClinic)
         if (err){
             return res
                 .status(400)
@@ -65,7 +65,6 @@ const createClinic = async (req, res) => {
         clinicName: req.body.clinicName,
     }
     await db.clinic.create(incomingReq, (err, createdClinic) => {
-        console.log("created " + createdClinic + " " + err);
         if (err){
             return res
                 .status(400)

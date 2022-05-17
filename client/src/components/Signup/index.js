@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import * as authService from "../../api/auth.service";
-
+import {Button, Container, Form} from 'react-bootstrap';
 
 const Signup = () => {
 
@@ -20,13 +20,14 @@ const Signup = () => {
     };
 
     return (
+        <Container>
         <div>
-            <form>
+            <Form>
             <h1>Create an Account</h1>
             <div>
-                <label htmlFor="email">
-            Email</label>
-                    <input 
+                <Form.Label htmlFor="email">
+            Email</Form.Label>
+                    <Form.Control 
                         className = "input"
                         onChange={(e) => setEmail(e.target.value)}
                         value={email}
@@ -35,9 +36,9 @@ const Signup = () => {
                         placeholder="email"
                     />
                 
-                <label htmlFor="email">
-            First Name</label>
-                    <input 
+                <Form.Label htmlFor="email">
+            First Name</Form.Label>
+                    <Form.Control  
                         className = "input"
                         onChange={(e) => setfirstName(e.target.value)}
                         value={firstName}
@@ -46,9 +47,9 @@ const Signup = () => {
                         placeholder="first name"
                     />
                 
-                <label htmlFor="email">
-            Last Name</label>
-                    <input 
+                <Form.Label htmlFor="email">
+            Last Name</Form.Label>
+                    <Form.Control 
                         className = "input"
                         onChange={(e) => setlastName(e.target.value)}
                         value={lastName}
@@ -58,9 +59,9 @@ const Signup = () => {
                     />
                 
 
-                <label for="chk" aria-hidden="true" htmlFor="password">
-            Password</label>
-                    <input 
+                <Form.Label for="chk" aria-hidden="true" htmlFor="password">
+            Password</Form.Label>
+                    <Form.Control  
                         className = "input"
                         onChange={(e) => setPassword(e.target.value)}
                         value={password}
@@ -70,12 +71,13 @@ const Signup = () => {
                     />
                 </div>
                     <div>
-                        <button onClick={handleSubmit}>
+                        <Button varient ="primary"onClick={handleSubmit}>
                             Sign Up
-                        </button>
+                        </Button>
                     </div>
-            </form>
+            </Form>
         </div>
+        </Container>
     );
 
 };

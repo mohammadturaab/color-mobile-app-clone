@@ -1,5 +1,6 @@
 import { useState } from "react";
 import * as authService from "../../api/auth.service";
+import {Button, Container, Form} from 'react-bootstrap';
 
 const Login = ( {checkUserActive} ) => {
     const [email, setEmail] = useState("");
@@ -13,27 +14,27 @@ const Login = ( {checkUserActive} ) => {
             setEmail("");
             setPassword("");
         });
+        window.location.href= '/clinicview'
     };
 
 return (
+    <Container>
     <div>
-        <form>
+        <Form>
         <h1>Login</h1>
             <div>
-            <label htmlFor="email">
-                Email</label>
-                <input
-                    className = "input"
+            <Form.Label htmlFor="email">
+                Email</Form.Label>
+                <Form.Control
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
                     type="text"
                     name="email"
                     placeholder="email"
                 />
-            <label  htmlFor="password">
-                Password</label>
-                <input
-                    className = "input"
+            <Form.Label  htmlFor="password">
+                Password</Form.Label>
+                <Form.Control
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}
                     type="password"
@@ -42,12 +43,13 @@ return (
                 />
             </div>
             <div >
-                <button onClick={handleSubmit}>
+                <Button variant="primary" onClick={handleSubmit}>
                     Login
-                </button>
+                </Button>
             </div>
-        </form>
+        </Form>
     </div>
+    </Container>
 );
 };
 

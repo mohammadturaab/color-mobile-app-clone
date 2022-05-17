@@ -14,11 +14,10 @@ const patientSchema = new Schema ({
         type: Number,
         required: true
     },
-    Clinic: [{
+    clinic: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Clinic"
-    }],
-    barcode: [Number],
+    }]
 },
 {
     timestamps: true,

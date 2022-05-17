@@ -1,11 +1,10 @@
 import {useState, useEffect} from 'react';
 import {Link} from "react-router-dom";
 import * as clinicService from '../../api/clinic.service';
-import * as patientService from '../../api/patient.service';
+import {Button, Container, Row, Col} from 'react-bootstrap';
 
 export default function ClinicView () {
-    const [clinics, setClinics] = useState();
-    const [patient, setPatient] = useState();
+    const [clinics, setClinics] = useState([]);
 
     const getClinic = async () => {
         await clinicService.getClinic()
@@ -14,51 +13,40 @@ export default function ClinicView () {
             })
     }
 
-    const getPatient = async () => {
-        await patientService.getPatient()
-            .then((res) => {
-                setPatient(res.data.data);
-            })
-    }
-
     useEffect(() => {
         getClinic();
-        getPatient();
     }, []);
 
 
     return (
         <>
-            <h3>Clinics</h3>
-            {clinics?.map((clinic) => {
+        <Container>
+            <h3>All Clinics</h3>
+            {clinics?.map((clinic, id) => {
                     return (
+                        <Row>
                         <div>
-                            <li>
-                                <p>Name: {clinic.clinicName}</p>
-                                {/* <Link to={clinic._id}>
-                                    <button>
-                                        View
-                                    </button>
-                                </Link> */}
-                                {patient?.map((patient) =>{
-                                    return (
-                                        <div>
-                                            <li>
-                                                <p>Patient: {patient.patientFirstName}</p>
-                                            </li>
-                                        </div>
-                                    )
-                                })}
+                            <Col md={12}>
+                            <li style = {{listStyle: "none"}}>
+                                <p key={id}>Name: {clinic.clinicName}</p>
                                 <Link to='/addpatient'>
-                                    <button>
-                                        Add patient
-                                    </button>
+                                    <Button variant="primary">
+                                        Add Patient
+                                    </Button>{" "}
+                                </Link>
+                                <Link to='/viewpatient'>
+                                    <Button variant="primary">
+                                        View Patient
+                                    </Button>{" "}
                                 </Link>
                             </li>
+                            </Col>
                         </div>
+                        </Row>
                     )
             })
         }
+        </Container>
         </>
     )
 }

@@ -1,28 +1,27 @@
 import React, {useState, useEffect} from 'react';
 import * as patientService from '../../api/patient.service';
 import { Link } from 'react-router-dom';
+import {Button, Container, Form} from 'react-bootstrap';
 
 
 export default function UpdatePatient() {
     const [patientFirstName, setPatientFirstName] = useState("");
     const [patientLastName, setPatientLastName] = useState("");
     const [patientDOB, setPatientDOB] = useState("");
-    const [patientBarcode, setPatientBarcode] = useState("");
 
     const handleSubmit = async () => {
         let newPatientInfo = {
-            patientFirstName, patientLastName, patientDOB, patientBarcode};
+            patientFirstName, patientLastName, patientDOB};
         let res = await patientService.updatePatient(newPatientInfo)
             .then(() => {
                 setPatientFirstName("");
                 setPatientLastName("");
                 setPatientDOB("");
-                setPatientBarcode("");
             });
             if (!res === 201){
                 alert("Adding patient failed. More information: ", res.status)
             }
-            window.location.href="/"
+            window.location.href="/clinicview"
     }
     const handlePatientDelete = async () => {
         let res = await patientService.deletePatient()
@@ -33,58 +32,44 @@ export default function UpdatePatient() {
             } 
     }
 
-    const getPatientProfile = async () => {
-        let res = await patientService.getPatient()
-            .then((data) => {
-                setPatientFirstName(data.data.data.firstName);
-                setPatientLastName(data.data.data.lastName);
-                setPatientDOB(data.data.data.description);
-            })
-            if ( !res === 201 ) {
-                alert(`Post error. Please submit again. ${res.status}`) 
-            } 
-    }
-        
-    useEffect(() => {
-        getPatientProfile();
-    }, []);
-
     return (
+        <Container>
         <div>
             <h2>Edit Patient Profile</h2>
-            <form>
-                <input
+            <Form>
+                <Form.Control
                     onChange={(e) => setPatientFirstName(e.target.value)}
                     value={patientFirstName}
                     type="text"
                     name="firstName"
-                    placeholder={patientFirstName}
+                    placeholder="First Name"
                 />
-                <input
+                <Form.Control
                     onChange={(e) => setPatientLastName(e.target.value)}
                     value={patientLastName}
                     type="text"
                     name="firstName"
-                    placeholder={patientLastName}
+                    placeholder="Last Name"
                 />
-                <input
+                <Form.Control
                     onChange={(e) => setPatientDOB(e.target.value)}
                     value={patientDOB}
                     type="text"
                     name="firstName"
-                    placeholder={patientDOB}
+                    placeholder="Date of Birth (MMDDYYYY)"
                 />
-            </form>
-            <Link to="/clinic/">
-                <button onClick = {handleSubmit}>
+            </Form>
+            <Link to="/viewpatient">
+                <Button onClick = {handleSubmit}>
                     Confirm
-                </button>
+                </Button>
             </Link>
             <Link to="/clinic/">
-                <button onClick = {handlePatientDelete}>
+                <Button variant="danger" onClick = {handlePatientDelete}>
                      Delete Patient
-                </button>
+                </Button>
             </Link>
         </div>
+        </Container>
     )
 }

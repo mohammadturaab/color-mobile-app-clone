@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { useReducer, useEffect } from "react";
 import * as authService from "../api/auth.service";
 import Welcome from "../components/Welcome";
-import Nav from '../components/Nav';
+import Navigation from '../components/Navigation';
 import ClinicCreate from '../components/Clinic/ClinicCreate';
 import ClinicView from "../components/Clinic/ClinicView";
 import Staff from "../components/Staff/staffView";
@@ -43,7 +43,7 @@ const Access = () => {
         return(
             <>
             <div>
-                <Nav 
+                <Navigation
                 checkUserActive={() => staffActive}/>
             </div>
                 <Routes>
@@ -64,7 +64,7 @@ const Access = () => {
                         element={<CreatePatient/>}
                         />
                     <Route
-                        path='/editpatient'
+                        path='/updatepatient'
                         element={<UpdatePatient/>}
                         />
                     <Route

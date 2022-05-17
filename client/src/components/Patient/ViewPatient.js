@@ -1,15 +1,15 @@
 import React, {useState, useEffect} from 'react';
+import {Link} from "react-router-dom";
 import * as patientService from '../../api/patient.service';
-import { Link } from 'react-router-dom';
+import {Button, Container, Row, Col} from 'react-bootstrap';
 
 export default function PatientView () {
-    const [patient, setPatient] = useState();
+    const [patients, setPatients] = useState();
 
     const getPatient = async () => {
-        await patientService.getPatient()
+        await patientService.getAll()
             .then((res) => {
-                setPatient(res.data.data);
-
+                setPatients(res.data.data);
             })
     }
     useEffect(() => {
@@ -17,15 +17,29 @@ export default function PatientView () {
     }, [])
 
     return (
+        <Container>
         <div>
             <h3>Patients</h3>
-            {patient?.map((patient) =>{
+            {patients?.map((patient) =>{
                 return (
+                    <Row>
                     <div>
-                        <li>{patient.name}</li>
+                        <Col md={10}>
+                        <li style = {{listStyle: "none"}}>
+                            <p>{patient.patientFirstName} {patient.patientLastName}</p>
+                            <p>DOB <strong>{patient.patientDOB}</strong> (MMDDYYYY)</p>
+                            <Link to='/updatepatient'>
+                                    <Button variant="primary">
+                                        Edit Patient Information
+                                    </Button>{" "}
+                            </Link>
+                        </li>
+                        </Col>
                     </div>
+                    </Row>
                 )
             })}
         </div>
+        </Container>
     )
 }

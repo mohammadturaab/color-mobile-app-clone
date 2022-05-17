@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { Link } from 'react-router-dom';
 import * as authService from "../../api/auth.service";
 import * as clinicService from '../../api/clinic.service';
+import {Button, Container, Form} from 'react-bootstrap';
 
 export default function ClinicCreate () {
     const [clinicName, setClinicName] = useState("");
@@ -18,23 +19,27 @@ export default function ClinicCreate () {
         window.location.href="/clinicview"
 };
     return (
+        <Container>
         <div>
             <h2>Create a new Site</h2>
-            <form>
-                <label>Clinic Name</label>
-                <input
-                    className = "input"
+            <Form>
+                <Form.Group>
+                <Form.Label>Clinic Name</Form.Label>
+                <Form.Control
                     type="text"
                     name="clinicName"
                     onChange={((e) => setClinicName(e.target.value))}
                     placeholder="Clinic Name"
                 />
-            </form>
+                </Form.Group>
+            </Form>
+            
             <Link to= "/">
-                <button onClick={handleSubmit}>
+                <Button varient = "primary" onClick={handleSubmit}>
                     Create Clinic
-                </button>
+                </Button>
             </Link>
         </div>
+        </Container>
     )
 }

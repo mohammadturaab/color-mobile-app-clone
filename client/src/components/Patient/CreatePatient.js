@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Link} from "react-router-dom"
 import * as patientService from '../../api/patient.service';
 import * as clinicService from '../../api/clinic.service';
+import {Button, Container, Form} from 'react-bootstrap';
 
 
 export default function CreatePatient () {
@@ -40,9 +41,10 @@ export default function CreatePatient () {
 
 
     return (
+        <Container>
         <div>
             <h1>Select Site</h1>
-            <select onChange={(e) => setClinic(e.target.value)}>
+            <Form.Select aria-label="Default select example" select onChange={(e) => setClinic(e.target.value)}>
                 {clinics.map((clinic) => {
                     return(
                         <option
@@ -51,11 +53,11 @@ export default function CreatePatient () {
                         name="clinic">{clinic.clinicName}</option>
                     )
                 })}
-            </select>
+            </Form.Select>
             <h1>Add Patient</h1>
-            <form>
-                <label>First Name</label>
-                <input
+            <Form>
+                <Form.Label>First Name</Form.Label>
+                <Form.Control
                     onChange={(e) => setPatientFirstName(e.target.value)
                     }
                     value={patientFirstName}
@@ -63,8 +65,8 @@ export default function CreatePatient () {
                     name="firstname"
                     placeholder="First Name"
                     />
-                <label>Last Name</label>
-                <input
+                <Form.Label>Last Name</Form.Label>
+                <Form.Control
                     onChange={(e) => setPatientLastName(e.target.value)
                     }
                     value={patientLastName}
@@ -72,8 +74,8 @@ export default function CreatePatient () {
                     name="lastname"
                     placeholder="Last Name"
                     />
-                <label>Date of Birth</label>
-                <input
+                <Form.Label>Date of Birth</Form.Label>
+                <Form.Control
                     onChange={(e) => setPatientDOB(e.target.value)
                     }
                     value={patientDOB}
@@ -81,12 +83,13 @@ export default function CreatePatient () {
                     name="dob"
                     placeholder="dob"
                     />
-            </form>
+            </Form>
             <Link to="/viewclinic/">
-                <button onClick={handleSubmit}>
+                <Button variant="primary" onClick={handleSubmit}>
                     Add patient
-                </button>
+                </Button>
             </Link>
         </div>
+        </Container>
     )
 }
